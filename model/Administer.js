@@ -62,7 +62,7 @@ class Administer {
     }
 
     addNewCourse(newCourseInformation) {
-        let sql = `insert into Course ${this.courseField} values (`;
+        let sql = `insert into course ${this.courseField} values (`;
         for (let index in newCourseInformation) {
             sql += `"${newCourseInformation[index]}",`;
         }
@@ -97,7 +97,7 @@ class Administer {
     }
 
     deleteCourse(courseID) {
-        let sql = `delete from Course where courseID = "${courseID}";`;
+        let sql = `delete from course where courseID = "${courseID}";`;
         connection.query(sql, (err, result, field) => {
             console.log("aaa");
             if (!err) {
@@ -123,7 +123,7 @@ class Administer {
 
     async getOneStudent(studentID) {
         return await new Promise((resolve, reject) => {
-            let sql = `select * from Students where studentID = "${studentID}";`;
+            let sql = `select * from students where studentID = "${studentID}";`;
             connection.query(sql, (err, data) => {
                 if (!err) {
                     resolve(data);
@@ -134,7 +134,7 @@ class Administer {
 
     async getOneTeacher(teacherID) {
         return await new Promise((resolve, reject) => {
-            let sql = `select * from Teachers where teacherID = "${teacherID}";`;
+            let sql = `select * from teachers where teacherID = "${teacherID}";`;
             connection.query(sql, (err, data) => {
                 if (!err) {
                     resolve(data);
@@ -145,7 +145,7 @@ class Administer {
 
     async getOneCourse(courseID) {
         return await new Promise((resolve, reject) => {
-            let sql = `select * from Course where courseID = "${courseID}";`;
+            let sql = `select * from course where courseID = "${courseID}";`;
             connection.query(sql, (err, data) => {
                 if(!err) {
                     resolve(data);

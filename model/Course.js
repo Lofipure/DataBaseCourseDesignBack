@@ -18,7 +18,7 @@ class Course {
 
     async getCourseScore(courseID) {
         return await new Promise((resolve, reject) => {
-            let sql = `select CourseScore from course where courseID = '${courseID}';`;
+            let sql = `select courseScore from course where courseID = '${courseID}';`;
             connection.query(sql, (err, result) => {
                 if(!err) {
                     resolve(result);

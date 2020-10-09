@@ -35,9 +35,9 @@ class Teacher {
     }
 
     async getAlreadyChoice() {
-        let sql = `select Course.* from Course, CourseChoice
-                    where Course.courseID = CourseChoice.courseID
-                    and CourseChoice.studentID is null and CourseChoice.teacherID = "${this.teacherID}";`
+        let sql = `select course.* from course, courseChoice
+                    where course.courseID = courseChoice.courseID
+                    and courseChoice.studentID is null and courseChoice.teacherID = "${this.teacherID}";`
         return await new Promise((resolve, reject) => {
             connection.query(sql, (err, results) => {
                if(!err) {

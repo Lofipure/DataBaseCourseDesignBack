@@ -37,12 +37,12 @@ class Student {
     }
 
     async getAlreadyChoice() {
-        let sql = `select Teachers.teacherName, Course.courseName, Course.courseScore, Teachers.teacherCollege, Teachers.teacherEmail, Teachers.teacherWork, courseChoice.grade
-                    from courseChoice,Course,Teachers
-                    where CourseChoice.teacherID is not null
-                    and CourseChoice.teacherID = Teachers.teacherID
-                    and CourseChoice.courseID = Course.courseID
-                    and CourseChoice.studentID = "${this.studentID}";`;
+        let sql = `select teachers.teacherName, course.courseName, Course.courseScore, teachers.teacherCollege, teachers.teacherEmail, teachers.teacherWork, courseChoice.grade
+                    from courseChoice,course,teachers
+                    where courseChoice.teacherID is not null
+                    and courseChoice.teacherID = teachers.teacherID
+                    and courseChoice.courseID = course.courseID
+                    and courseChoice.studentID = "${this.studentID}";`;
         return await new Promise((resolve, reject) => {
             connection.query(sql, (err, data) => {
                 if(!err) {
@@ -53,16 +53,17 @@ class Student {
     }
 
     async getChoiceCourseList() {
-        let sql = `select Teachers.teacherName, Course.courseName, Course.courseScore, Teachers.teacherCollege, Teachers.teacherEmail, Teachers.teacherWork, Teachers.teacherID, Course.courseID
-                    from courseChoice,Course,Teachers
-                    where CourseChoice.teacherID is not null 
-                    and CourseChoice.teacherID = Teachers.teacherID 
-                    and CourseChoice.courseID = Course.courseID
-                    and CourseChoice.studentID is null;`;
+        let sql = `select teachers.teacherName, course.courseName, course.courseScore, teachers.teacherCollege, teachers.teacherEmail, teachers.teacherWork, teachers.teacherID, course.courseID
+                    from courseChoice,course,teachers
+                    where courseChoice.teacherID is not null 
+                    and courseChoice.teacherID = teachers.teacherID 
+                    and courseChoice.courseID = course.courseID
+                    and courseChoice.studentID is null;`;
         return await new Promise((resolve, reject) => {
             connection.query(sql, (err, results) => {
                 if (!err) {
                     resolve(results);
+                    console.log(results)
                 }
             });
         });

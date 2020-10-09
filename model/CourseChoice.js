@@ -40,11 +40,11 @@ class CourseChoice {
     }
 
     async getStudentList(teacherID, courseID) {
-        let sql = `select Students.sutdentName, Students.studentID, Students.studentCollege,Students.studentMajor,Students.studentEmail ,CourseChoice.grade
-                    from Students,CourseChoice
-                    where Students.studentID = CourseChoice.studentID 
-                    and CourseChoice.teacherID = '${teacherID}' 
-                    and CourseChoice.courseID = '${courseID}';`
+        let sql = `select students.sutdentName, students.studentID, students.studentCollege,students.studentMajor,students.studentEmail ,courseChoice.grade
+                    from students,courseChoice
+                    where students.studentID = courseChoice.studentID 
+                    and courseChoice.teacherID = '${teacherID}' 
+                    and courseChoice.courseID = '${courseID}';`
         return await new Promise((resolve, reject) => {
             connection.query(sql, (err, results) => {
                 if (!err) {
